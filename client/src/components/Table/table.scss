@@ -1,0 +1,51 @@
+@import '../../colors';
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border: 1px solid $border;
+    padding: 1rem;
+  }
+
+td {
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+    padding: 1rem;
+}
+
+.top-table {
+    border: none;
+}
+
+.first-cell {
+    border-left: 1px solid $border;
+}
+
+.last-cell {
+    border-right: 1px solid $border;
+    color: grey;
+}
+
+.header {
+    background-color: $header-background;
+    color: $header-text;
+}
+
+.invited {
+    color: $invited;
+}
+
+.activated {
+    color: $activated;
+}
+
+.pending {
+    color: $pending;
+}
+
+.deactivated {
+    color: $header-text;
+}

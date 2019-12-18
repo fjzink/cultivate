@@ -1,0 +1,28 @@
+$engineering: #AEC1FF;
+$product: #DDCAF7;
+$sales: #FDDCA6;
+
+%department-common {
+    width: 90%;
+    min-width: 125px;
+    height: 30px;
+    border-radius: 150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.engineering {
+    @extend %department-common;
+    background-color: $engineering;
+}
+
+.product {
+    @extend %department-common;
+    background-color: $product;
+}
+
+.sales {
+    @extend %department-common;
+    background-color: $sales;
+}
