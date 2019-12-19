@@ -5,7 +5,19 @@ class ManagersController < ApplicationController
   def index
     @managers = Manager.all
 
-    render json: @managers
+    man_rep = @managers.map do |manager|
+      {
+        id: manager.id,
+        name: manager.name,
+        department: manager.department,
+        activated: manager.activated,
+        deactivated: manager.deactivated,
+        reports: manager.reports
+      }
+      
+    end
+
+    render json: man_rep
   end
 
   # GET /managers/1

@@ -1,5 +1,11 @@
 @import '../../colors';
 
+td {
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+    padding: 1rem;
+}
+
 .first-cell {
     border-left: 1px solid $border;
 }
@@ -31,4 +37,8 @@
 .mail {
     display: inline-block;
     font-size: 1.7em;
+}
+
+.report-row {
+    margin-left: 50px;
 }

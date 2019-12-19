@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Row from '../Row/Row';
+import DirectReport from '../DirectReport/DirectReport'
 import './table.scss';
 
 const testData = [
@@ -10,6 +11,16 @@ const testData = [
         invited: '1/1/19',
         activated: '1/2/19',
         deactivated: null,
+        employees: [
+            {
+                name: 'Julia',
+                department: 'Engineering',
+                reports: 2,
+                invited: '1/1/19',
+                activated: '1/2/19',
+                deactivated: null,
+            }
+        ]
     },
     {
         name: 'Jimmy',
@@ -18,6 +29,16 @@ const testData = [
         invited: '1/1/19',
         activated: '1/2/19',
         deactivated: null,
+        employees: [
+            {
+                name: 'Julia',
+                department: 'Engineering',
+                reports: 2,
+                invited: '1/1/19',
+                activated: '1/2/19',
+                deactivated: null,
+            }
+        ]
     },
     {
         name: 'Joseph',
@@ -26,6 +47,16 @@ const testData = [
         invited: '1/1/19',
         activated: null,
         deactivated: null,
+        employees: [
+            {
+                name: 'Julia',
+                department: 'Engineering',
+                reports: 2,
+                invited: '1/1/19',
+                activated: '1/2/19',
+                deactivated: null,
+            }
+        ]
     },
 ]
 
@@ -37,8 +68,20 @@ export default class Table extends Component {
         }
     }
 
+    renderReports = (reports) => {
+        return reports.map(report => <Row report={true} person={report} />);
+    }
+
     renderRows = (data) => {
-        return data.map(manager => <Row manager={manager} />);
+        return data.map((manager) => {
+            return (
+                <tbody>
+                    <Row person={manager} />
+                    <DirectReport />
+                    {this.renderReports(manager.employees)}
+                </tbody>
+            );
+        });
     }
 
     render() {
@@ -65,9 +108,7 @@ export default class Table extends Component {
                         <th className='header'>User Actions</th>
                     </tr>
                 </thead>
-                <tbody>
                     {this.renderRows(data)}
-                </tbody>
             </table>
         );
     }
