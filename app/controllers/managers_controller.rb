@@ -12,7 +12,8 @@ class ManagersController < ApplicationController
         department: manager.department,
         activated: manager.activated,
         deactivated: manager.deactivated,
-        directReports: manager.reports
+        directReports: manager.reports,
+        reports: manager.reports.length
       }
       
     end
