@@ -79,7 +79,7 @@ export default class Table extends Component {
                         <th className='top-table'></th>
                     </tr>
                     <tr>
-                        <th className='header'>Named</th>
+                        <th className='header'>Name</th>
                         <th className='header'>Department</th>
                         <th className='header'>Reports</th>
                         <th className='header'>Invited</th>
