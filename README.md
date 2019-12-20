@@ -14,3 +14,7 @@ For my schema I created a many to many relationship between managers and direct 
 Invites can belong to either a manager or a direct report.
 
 ![Schema](https://i.imgur.com/j40AsEP.png)
+
+## Technologies Used
+
+The back end API was created using Ruby on Rails, and the front end was created with React. The React code is stored in the ```/client``` folder and the production build is served from the ```/public``` folder. The front end retrieves data from the API using the axios library. Table data is loaded from the API when the table loads, and each time an action is performed the table data is refreshed to make sure the database changes are accurately reflected in the front end. 
