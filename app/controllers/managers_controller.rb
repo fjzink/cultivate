@@ -12,7 +12,7 @@ class ManagersController < ApplicationController
         department: manager.department,
         activated: manager.activated,
         deactivated: manager.deactivated,
-        reports: manager.reports
+        directReports: manager.reports
       }
       
     end

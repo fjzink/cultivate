@@ -1,84 +1,96 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Row from '../Row/Row';
 import DirectReport from '../DirectReport/DirectReport'
 import './table.scss';
 
-const testData = [
-    {
-        name: 'John',
-        department: 'Engineering',
-        reports: 2,
-        invited: '1/1/19',
-        activated: '1/2/19',
-        deactivated: null,
-        employees: [
-            {
-                name: 'Julia',
-                department: 'Engineering',
-                reports: 2,
-                invited: '1/1/19',
-                activated: '1/2/19',
-                deactivated: null,
-            }
-        ]
-    },
-    {
-        name: 'Jimmy',
-        department: 'Product',
-        reports: 5,
-        invited: '1/1/19',
-        activated: '1/2/19',
-        deactivated: null,
-        employees: [
-            {
-                name: 'Julia',
-                department: 'Engineering',
-                reports: 2,
-                invited: '1/1/19',
-                activated: '1/2/19',
-                deactivated: null,
-            }
-        ]
-    },
-    {
-        name: 'Joseph',
-        department: 'Sales',
-        reports: 90,
-        invited: '1/1/19',
-        activated: null,
-        deactivated: null,
-        employees: [
-            {
-                name: 'Julia',
-                department: 'Engineering',
-                reports: 2,
-                invited: '1/1/19',
-                activated: '1/2/19',
-                deactivated: null,
-            }
-        ]
-    },
-]
+// const testData = [
+//     {
+//         name: 'John',
+//         department: 'Engineering',
+//         reports: 2,
+//         invited: '1/1/19',
+//         activated: '1/2/19',
+//         deactivated: null,
+//         employees: [
+//             {
+//                 name: 'Julia',
+//                 department: 'Engineering',
+//                 reports: 2,
+//                 invited: '1/1/19',
+//                 activated: '1/2/19',
+//                 deactivated: null,
+//             }
+//         ]
+//     },
+//     {
+//         name: 'Jimmy',
+//         department: 'Product',
+//         reports: 5,
+//         invited: '1/1/19',
+//         activated: '1/2/19',
+//         deactivated: null,
+//         employees: [
+//             {
+//                 name: 'Julia',
+//                 department: 'Engineering',
+//                 reports: 2,
+//                 invited: '1/1/19',
+//                 activated: '1/2/19',
+//                 deactivated: null,
+//             }
+//         ]
+//     },
+//     {
+//         name: 'Joseph',
+//         department: 'Sales',
+//         reports: 90,
+//         invited: '1/1/19',
+//         activated: null,
+//         deactivated: null,
+//         employees: [
+//             {
+//                 name: 'Julia',
+//                 department: 'Engineering',
+//                 reports: 2,
+//                 invited: '1/1/19',
+//                 activated: '1/2/19',
+//                 deactivated: null,
+//             }
+//         ]
+//     },
+// ]
 
 export default class Table extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: testData,
+            data: [],
         }
     }
 
+    componentDidMount() {
+        this.getManagers();
+    }
+
+    getManagers = () => {
+        axios.get('/managers')
+        .then((res) => {
+            this.setState({ data: res.data });
+        })
+    }
+
     renderReports = (reports) => {
-        return reports.map(report => <Row report={true} person={report} />);
+        return reports.map(report => <Row key={report.name + report.id} report={true} person={report} />);
     }
 
     renderRows = (data) => {
         return data.map((manager) => {
             return (
                 <tbody>
-                    <Row person={manager} />
+                    <Row key={manager.name + manager.id} person={manager} />
                     <DirectReport />
-                    {this.renderReports(manager.employees)}
+                    {this.renderReports(manager.directReports)}
                 </tbody>
             );
         });
