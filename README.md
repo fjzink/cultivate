@@ -1,6 +1,6 @@
 # Cultivate Project
 
-![Live App](https://cultivatejoey.herokuapp.com/)
+[Live App](https://cultivatejoey.herokuapp.com/)
 
 This is my interpretation of the table from image made by the designer. You can click invite to send an invite which will show up with a date in the appropriate column. Once an invite is sent, the remove button displays which allows you to delete someone. Currently the buttons are only functional for the managers and not for the direct reports, but that should give you an idea of functionality. 
 
