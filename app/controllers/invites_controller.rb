@@ -46,6 +46,6 @@ class InvitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invite_params
-      params.require(:invite).permit(:ivitable_id, :invitable_type)
+      params.require(:invite).permit(:invitable_id, :invitable_type)
     end
 end

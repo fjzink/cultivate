@@ -4,63 +4,6 @@ import Row from '../Row/Row';
 import DirectReport from '../DirectReport/DirectReport'
 import './table.scss';
 
-// const testData = [
-//     {
-//         name: 'John',
-//         department: 'Engineering',
-//         reports: 2,
-//         invited: '1/1/19',
-//         activated: '1/2/19',
-//         deactivated: null,
-//         employees: [
-//             {
-//                 name: 'Julia',
-//                 department: 'Engineering',
-//                 reports: 2,
-//                 invited: '1/1/19',
-//                 activated: '1/2/19',
-//                 deactivated: null,
-//             }
-//         ]
-//     },
-//     {
-//         name: 'Jimmy',
-//         department: 'Product',
-//         reports: 5,
-//         invited: '1/1/19',
-//         activated: '1/2/19',
-//         deactivated: null,
-//         employees: [
-//             {
-//                 name: 'Julia',
-//                 department: 'Engineering',
-//                 reports: 2,
-//                 invited: '1/1/19',
-//                 activated: '1/2/19',
-//                 deactivated: null,
-//             }
-//         ]
-//     },
-//     {
-//         name: 'Joseph',
-//         department: 'Sales',
-//         reports: 90,
-//         invited: '1/1/19',
-//         activated: null,
-//         deactivated: null,
-//         employees: [
-//             {
-//                 name: 'Julia',
-//                 department: 'Engineering',
-//                 reports: 2,
-//                 invited: '1/1/19',
-//                 activated: '1/2/19',
-//                 deactivated: null,
-//             }
-//         ]
-//     },
-// ]
-
 export default class Table extends Component {
     constructor(props) {
         super(props);
@@ -84,11 +27,33 @@ export default class Table extends Component {
         return reports.map(report => <Row key={report.name + report.id} report={true} person={report} />);
     }
 
+    inviteUser = (id, type) => {
+        const invite = { "invite": { "invitable_id": id, "invitable_type": type } };
+        axios.post('/invites', invite)
+        .then((res) => {
+            this.getManagers();
+        })
+    }
+
+    deleteManager = (id) => {
+        axios.delete(`/managers/${id}`)
+        .then((res) => {
+            this.getManagers();
+        });
+
+    }
+
     renderRows = (data) => {
         return data.map((manager) => {
             return (
                 <tbody>
-                    <Row key={manager.name + manager.id} person={manager} />
+                    <Row
+                        key={manager.name + manager.id}
+                        person={manager}
+                        personType={"Manager"}
+                        invite={() => {this.inviteUser(manager.id, "Manager")}}
+                        remove={() => {this.deleteManager(manager.id)}}
+                    />
                     <DirectReport />
                     {this.renderReports(manager.directReports)}
                 </tbody>
