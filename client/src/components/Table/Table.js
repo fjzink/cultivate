@@ -21,6 +21,9 @@ export default class Table extends Component {
         .then((res) => {
             this.setState({ data: res.data });
         })
+        .catch((err) => {
+            console.log(err);
+        });
     }
 
     renderReports = (reports) => {
