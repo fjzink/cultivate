@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import InviteButton from '../InviteButton/InviteButton';
+import RemoveButton from '../RemoveButton/RemoveButton';
 import Department from '../Department/Department';
 import './row.scss';
 
@@ -20,7 +21,9 @@ export default (props) => {
             <td className='deactivated'>{deactivated ? deactivated : '--'}</td>
             <td className='last-cell'>
                 <span className='mail'><FontAwesomeIcon icon={faEnvelope} /></span>
-                <InviteButton />
+                {invited ? <RemoveButton action={props.remove} /> : 
+                    <InviteButton action={props.invite} />
+                }
             </td>
         </tr>
     );

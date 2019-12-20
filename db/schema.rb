@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_040236) do
   enable_extension "plpgsql"
 
   create_table "invites", force: :cascade do |t|
-    t.integer "ivitable_id"
+    t.integer "invitable_id"
     t.string "invitable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

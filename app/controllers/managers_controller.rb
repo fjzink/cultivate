@@ -6,6 +6,18 @@ class ManagersController < ApplicationController
     @managers = Manager.all
 
     man_rep = @managers.map do |manager|
+      rep_num = 0
+
+      if manager.reports
+        rep_num = manager.reports.length
+      end
+
+      inviteDate = nil
+      if manager.invites[0]
+        inv = manager.invites[0].created_at
+        inviteDate="#{inv.month}/#{inv.day}/#{inv.year}"
+      end
+
       {
         id: manager.id,
         name: manager.name,
@@ -13,7 +25,8 @@ class ManagersController < ApplicationController
         activated: manager.activated,
         deactivated: manager.deactivated,
         directReports: manager.reports,
-        reports: manager.reports.length
+        reports: rep_num,
+        invited: inviteDate
       }
       
     end
