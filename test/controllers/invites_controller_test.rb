@@ -12,7 +12,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create invite" do
     assert_difference('Invite.count') do
-      post invites_url, params: { invite: { invitable_type: @invite.invitable_type, ivitable_id: @invite.ivitable_id } }, as: :json
+      post invites_url, params: { invite: { invitable_type: @invite.invitable_type, invitable_id: @invite.invitable_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update invite" do
-    patch invite_url(@invite), params: { invite: { invitable_type: @invite.invitable_type, ivitable_id: @invite.ivitable_id } }, as: :json
+    patch invite_url(@invite), params: { invite: { invitable_type: @invite.invitable_type, invitable_id: @invite.invitable_id } }, as: :json
     assert_response 200
   end
 
