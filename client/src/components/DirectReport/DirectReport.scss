@@ -1,0 +1,12 @@
+@import '../../colors';
+// @import '../Row/row';
+
+.direct-report {
+    margin-left: 100px;
+    font-weight: 600;
+}
+
+.last-report {
+    border-right: 1px solid $border;
+    color: grey;
+}

@@ -6,10 +6,10 @@ import Department from '../Department/Department';
 import './row.scss';
 
 export default (props) => {
-    const { name, department, reports, invited, activated, deactivated } = props.manager;
+    const { name, department, reports, invited, activated, deactivated } = props.person;
     return(
         <tr>
-            <td className='first-cell'>{name}</td>
+            <td className='first-cell'><span className={props.report ? 'report-row' : ''}>{name}</span></td>
             <td><Department>{department}</Department></td>
             <td>{reports}</td>
             <td className='invited'>{invited}</td>
